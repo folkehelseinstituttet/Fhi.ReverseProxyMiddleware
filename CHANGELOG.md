@@ -4,7 +4,7 @@
 
 * :boom: **Breaking** Actual code
 
-## 1.0.0
+## 0.0.1
 
 > Jan 03, 2023
 

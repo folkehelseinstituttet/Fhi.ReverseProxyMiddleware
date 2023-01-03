@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	<LangVersion>latest</LangVersion>
+	<Configurations>Debug;Release</Configurations>
+	<id>Fhi.ReverseProxyMiddleware</id>
+	<Version>0.0.1</Version>
+	<authors>Folkehelseinstituttet (FHI)</authors>
+	<Copyright>(c) 2023 Folkehelseinstituttet (FHI)</Copyright>
+	<projectUrl>https://github.com/folkehelseinstituttet/Fhi.ReverseProxyMiddleware</projectUrl>
+	<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	<icon>https://github.com/folkehelseinstituttet/Fhi.ReverseProxyMiddleware/images/fhi.png</icon>
+	<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+	<PackageReleaseNotes>Init</PackageReleaseNotes>
+	<PackageDescription>Reverse proxy middleware for use with SPA</PackageDescription>
+	<PackageCopyright>Copyright ©2023 Folkehelseinstituttet</PackageCopyright>
+	<!-- Tags appear in the gallery and can be used for tag searches -->
+	<Tags>reverseproxy, middleware, spa</Tags>
+	<RepositoryUrl>https://github.com/folkehelseinstituttet/Fhi.ReverseProxyMiddleware</RepositoryUrl>
+	<dependencies>
+	  <group targetFramework="net7.0">
+	  </group>
+	</dependencies>
+	<GenerateDocumentationFile>True</GenerateDocumentationFile>  
+  </PropertyGroup>
+
+  <PropertyGroup>
+	<IncludeSymbols>true</IncludeSymbols>
+	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+</Project>
