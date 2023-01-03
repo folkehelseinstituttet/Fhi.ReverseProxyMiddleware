@@ -29,8 +29,8 @@ jobs:
         with:
           dotnet-version: 7.0.x
       - name: Install dependencies
-        run: dotnet restore Fhi.ReverseProxyMiddleware/Fhi.ReverseProxyMiddleware.sln
+        run: dotnet restore Fhi.ReverseProxyMiddleware.sln
       - name: Build
-        run: dotnet build Fhi.ReverseProxyMiddleware/Fhi.ReverseProxyMiddleware.sln --configuration Release --no-restore
+        run: dotnet build Fhi.ReverseProxyMiddleware.sln --configuration Release --no-restore
       - name: Test
-        run: dotnet test Fhi.ReverseProxyMiddleware/Fhi.ReverseProxyMiddleware.sln --no-restore --verbosity normal
+        run: dotnet test Fhi.ReverseProxyMiddleware.sln --no-restore --verbosity normal
