@@ -1,8 +1,8 @@
-# Unreleased
+## 0.0.4
 
-> Jan 04, 2023
+> Jan 03, 2023
 
-* :boom: **Breaking** Actual code
+* :gift: **New** The actual reverse proxy middleware
 
 ## 0.0.3
 

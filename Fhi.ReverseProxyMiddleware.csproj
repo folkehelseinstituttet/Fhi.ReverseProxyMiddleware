@@ -7,7 +7,7 @@
 	<LangVersion>latest</LangVersion>
 	<Configurations>Debug;Release</Configurations>
 	<id>Fhi.ReverseProxyMiddleware</id>
-	<Version>0.0.3</Version>
+	<Version>0.0.4</Version>
 	<authors>Folkehelseinstituttet (FHI)</authors>
 	<Copyright>(c) 2023 Folkehelseinstituttet (FHI)</Copyright>
 	<projectUrl>https://github.com/folkehelseinstituttet/Fhi.ReverseProxyMiddleware</projectUrl>
@@ -34,7 +34,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-      <None Include="README.md" Pack="true" PackagePath=""/>
+      <None Include="README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
   </ItemGroup>
 
 </Project>
