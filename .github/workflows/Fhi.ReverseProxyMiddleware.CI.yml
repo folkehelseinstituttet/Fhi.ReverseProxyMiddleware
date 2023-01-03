@@ -25,12 +25,12 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       - name: Setup .NET Core
-        uses: actions/setup-dotnet@v2
+        uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 7.0.x
       - name: Install dependencies
-        run: dotnet restore
+        run: dotnet restore Fhi.ReverseProxyMiddleware/Fhi.ReverseProxyMiddleware.sln
       - name: Build
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build Fhi.ReverseProxyMiddleware/Fhi.ReverseProxyMiddleware.sln --configuration Release --no-restore
       - name: Test
-        run: dotnet test --no-restore --verbosity normal
+        run: dotnet test Fhi.ReverseProxyMiddleware/Fhi.ReverseProxyMiddleware.sln --no-restore --verbosity normal
