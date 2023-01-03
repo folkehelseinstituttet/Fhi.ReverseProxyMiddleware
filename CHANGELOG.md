@@ -4,6 +4,12 @@
 
 * :boom: **Breaking** Actual code
 
+## 0.0.2
+
+> Jan 03, 2023
+
+* :tada: **Enhancement** Readme
+
 ## 0.0.1
 
 > Jan 03, 2023
