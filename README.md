@@ -20,7 +20,7 @@ Add this package
 
 `dotnet add package fhi.reverseproxymiddleware`
 
-Add configuration in appsettings.json. TargetPath will be what you want to reverse proxy; ie if your site is hosted on ```https://localhost```, with the configuration below, all calls to `https://localhost/api` will be forwarded to the url setup in the httpClient the specified name.
+Add configuration in appsettings.json. TargetPath will be what you want to reverse proxy; ie if your site is hosted on ```https://localhost```, with the configuration below, all calls to `https://localhost/api` will be forwarded to the using the httpClient with the specified name.
 
 ```
 "ReverseProxyOptions": {
