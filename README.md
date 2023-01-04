@@ -1,4 +1,7 @@
 # Fhi.ReverseProxyMiddleware
+[![CI](https://github.com/folkehelseinstituttet/Fhi.ReverseProxyMiddleware/actions/workflows/Fhi.ReverseProxyMiddleware.CI.yml/badge.svg)](https://github.com/folkehelseinstituttet/Fhi.ReverseProxyMiddleware/actions/workflows/Fhi.ReverseProxyMiddleware.CI.yml)
+[![NUGET](https://img.shields.io/nuget/v/Fhi.ReverseProxyMiddleware)](https://img.shields.io/nuget/v/Fhi.ReverseProxyMiddleware?label=NuGet)
+
 Handles reverse proxy if you just need to route api-calls through without doing anything more about them
 
 ## Setup example
