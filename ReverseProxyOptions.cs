@@ -16,11 +16,18 @@ public class ReverseProxyOptions
     public string TargetPath { get; set; }
 
     /// <summary>
+    /// List of allowed http methods separated by ';' (ie 'get;post')
+    /// By default all of them are allowed
+    /// </summary>
+    public string AllowedHttpMethods { get; set; }
+
+    /// <summary>
     /// Constuctor
     /// </summary>
     public ReverseProxyOptions()
     {
         HttpClientName = string.Empty;
         TargetPath = string.Empty;
+        AllowedHttpMethods = "connect;delete;get;head;options;patch;post;put;trace";
     }
 }

@@ -33,8 +33,10 @@ public class ReverseProxyMiddleware
     public async Task Invoke(HttpContext context)
     {
         var targetUri = BuildTargetUri(context.Request);
+        var allowedHttpMethods = _reverseProxyOptions.AllowedHttpMethods.Split(';');
 
-        if (!string.IsNullOrEmpty(targetUri))
+        if (!string.IsNullOrEmpty(targetUri) &&
+            allowedHttpMethods.Contains(context.Request.Method, StringComparer.OrdinalIgnoreCase))
         {
             var targetRequestMessage = CreateTargetMessage(context, targetUri);
 

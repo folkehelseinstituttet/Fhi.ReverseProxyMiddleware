@@ -1,3 +1,9 @@
+## 0.0.5
+
+> Jan 04, 2023
+
+* :gift: **New** It is now possible to restrict http methods the reverse proxy should handle
+
 ## 0.0.4
 
 > Jan 03, 2023
