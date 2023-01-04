@@ -7,15 +7,14 @@
 	<LangVersion>latest</LangVersion>
 	<Configurations>Debug;Release</Configurations>
 	<id>Fhi.ReverseProxyMiddleware</id>
-	<Version>0.0.5</Version>
+	<Version>0.0.6</Version>
 	<authors>Folkehelseinstituttet (FHI)</authors>
 	<Copyright>(c) 2023 Folkehelseinstituttet (FHI)</Copyright>
 	<projectUrl>https://github.com/folkehelseinstituttet/Fhi.ReverseProxyMiddleware</projectUrl>
 	<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	<icon>https://github.com/folkehelseinstituttet/Fhi.ReverseProxyMiddleware/images/fhi.png</icon>
 	<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-	<PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/CHANGELOG.md"))</PackageReleaseNotes>
-	<PackageDescription>Reverse proxy middleware for use with SPA</PackageDescription>
+	<PackageDescription>Reverse proxy middleware</PackageDescription>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
 	<PackageCopyright>Copyright ©2023 Folkehelseinstituttet</PackageCopyright>
 	<!-- Tags appear in the gallery and can be used for tag searches -->

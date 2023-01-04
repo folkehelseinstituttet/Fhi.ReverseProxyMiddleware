@@ -1,3 +1,9 @@
+## 0.0.6
+
+> Jan 04, 2023
+
+* :gift: **New** New deployment
+
 ## 0.0.5
 
 > Jan 04, 2023
