@@ -22,12 +22,18 @@ public class ReverseProxyOptions
     public string AllowedHttpMethods { get; set; }
 
     /// <summary>
+    /// Whether to include the TargetPath in the reverse proxy call, default is true
+    /// </summary>
+    public bool IncludeTargetPath { get; set; }
+
+    /// <summary>
     /// Constuctor
     /// </summary>
     public ReverseProxyOptions()
     {
         HttpClientName = string.Empty;
         TargetPath = string.Empty;
+        IncludeTargetPath = true;
         AllowedHttpMethods = "connect;delete;get;head;options;patch;post;put;trace";
     }
 }

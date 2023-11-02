@@ -8,7 +8,8 @@ namespace Fhi.ReverseProxyMiddleware;
 /// </summary>
 public class ReverseProxyMiddleware
 {
-    private readonly HttpClient _httpClient;
+    private HttpClient? _httpClient;
+    private readonly IHttpClientFactory _httpClientFactory;
     private readonly RequestDelegate _nextMiddleware;
     private readonly ReverseProxyOptions _reverseProxyOptions;
 
@@ -22,7 +23,7 @@ public class ReverseProxyMiddleware
     {
         _nextMiddleware = nextMiddleware;
         _reverseProxyOptions = reverseProxyOptions.Value;
-        _httpClient = httpClientFactory.CreateClient(_reverseProxyOptions.HttpClientName);
+        _httpClientFactory = httpClientFactory;
     }
 
     /// <summary>
@@ -32,6 +33,8 @@ public class ReverseProxyMiddleware
     /// <returns></returns>
     public async Task Invoke(HttpContext context)
     {
+        _httpClient ??= _httpClientFactory.CreateClient(_reverseProxyOptions.HttpClientName);
+
         var targetUri = BuildTargetUri(context.Request);
         var allowedHttpMethods = _reverseProxyOptions.AllowedHttpMethods.Split(';');
 
@@ -52,8 +55,9 @@ public class ReverseProxyMiddleware
 
     private string BuildTargetUri(HttpRequest request)
     {
+        var targetPath = _reverseProxyOptions.IncludeTargetPath ? _reverseProxyOptions.TargetPath : string.Empty;
         return request.Path.StartsWithSegments("/" + _reverseProxyOptions.TargetPath, out var remainingPath)
-            ? $"{_reverseProxyOptions.TargetPath}{remainingPath}{request.QueryString}"
+            ? $"{targetPath}{remainingPath}{request.QueryString}"
             : string.Empty;
     }
 

@@ -1,3 +1,9 @@
+## 0.0.7
+> Mar 03, 2023
+
+* :gift: **New** Added option so it's possible to exclude the targetpath from the end api call
+* :bug: **Bugfix** Moved httpclient-creation out of constructor
+
 ## 0.0.6
 
 > Jan 04, 2023

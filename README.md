@@ -30,7 +30,8 @@ AllowedHttpMethods are the methods you want to reverse proxy, by default all are
 "ReverseProxyOptions": {
     "HttpClientName": "httpClientName",
     "TargetPath": "api",
-    "AllowedHttpMethods": "get;post;put"
+    "AllowedHttpMethods": "get;post;put",
+    "IncludeTargetPath": "true"
   } 
 ```
 
