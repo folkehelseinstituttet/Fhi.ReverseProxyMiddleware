@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	<LangVersion>latest</LangVersion>
@@ -21,7 +21,7 @@
 	<Tags>reverseproxy, middleware, spa</Tags>
 	<RepositoryUrl>https://github.com/folkehelseinstituttet/Fhi.ReverseProxyMiddleware</RepositoryUrl>
 	<dependencies>
-	  <group targetFramework="net7.0">
+	  <group targetFramework="net8.0">
 	  </group>
 	</dependencies>
 	<GenerateDocumentationFile>True</GenerateDocumentationFile>  

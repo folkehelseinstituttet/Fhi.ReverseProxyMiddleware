@@ -6,25 +6,16 @@ namespace Fhi.ReverseProxyMiddleware;
 /// <summary>
 /// Initializes a new instance of the <see cref="ReverseProxyMiddleware"/> class.
 /// </summary>
-public class ReverseProxyMiddleware
+/// <remarks>
+/// Constructor
+/// </remarks>
+/// <param name="nextMiddleware"></param>
+/// <param name="httpClientFactory"></param>
+/// <param name="reverseProxyOptions"></param>
+public class ReverseProxyMiddleware(RequestDelegate nextMiddleware, IHttpClientFactory httpClientFactory, IOptions<ReverseProxyOptions> reverseProxyOptions)
 {
     private HttpClient? _httpClient;
-    private readonly IHttpClientFactory _httpClientFactory;
-    private readonly RequestDelegate _nextMiddleware;
-    private readonly ReverseProxyOptions _reverseProxyOptions;
-
-    /// <summary>
-    /// Constructor
-    /// </summary>
-    /// <param name="nextMiddleware"></param>
-    /// <param name="httpClientFactory"></param>
-    /// <param name="reverseProxyOptions"></param>
-    public ReverseProxyMiddleware(RequestDelegate nextMiddleware, IHttpClientFactory httpClientFactory, IOptions<ReverseProxyOptions> reverseProxyOptions)
-    {
-        _nextMiddleware = nextMiddleware;
-        _reverseProxyOptions = reverseProxyOptions.Value;
-        _httpClientFactory = httpClientFactory;
-    }
+    private readonly ReverseProxyOptions _reverseProxyOptions = reverseProxyOptions.Value;
 
     /// <summary>
     /// Runs whenever an api-call is made
@@ -33,7 +24,7 @@ public class ReverseProxyMiddleware
     /// <returns></returns>
     public async Task Invoke(HttpContext context)
     {
-        _httpClient ??= _httpClientFactory.CreateClient(_reverseProxyOptions.HttpClientName);
+        _httpClient ??= httpClientFactory.CreateClient(_reverseProxyOptions.HttpClientName);
 
         var targetUri = BuildTargetUri(context.Request);
         var allowedHttpMethods = _reverseProxyOptions.AllowedHttpMethods.Split(';');
@@ -50,22 +41,50 @@ public class ReverseProxyMiddleware
             return;
         }
 
-        await _nextMiddleware(context);
+        await nextMiddleware(context);
     }
 
     private string BuildTargetUri(HttpRequest request)
     {
-        var targetPath = _reverseProxyOptions.IncludeTargetPath ? _reverseProxyOptions.TargetPath : string.Empty;
-        return request.Path.StartsWithSegments("/" + _reverseProxyOptions.TargetPath, out var remainingPath)
-            ? $"{targetPath}{remainingPath}{request.QueryString}"
-            : string.Empty;
+        if (_reverseProxyOptions.IncludeTargetPath)
+        {
+            var targetPath = _reverseProxyOptions.IncludeTargetPath ? _reverseProxyOptions.TargetPath : string.Empty;
+            return request.Path.StartsWithSegments("/" + _reverseProxyOptions.TargetPath, out var remainingPath)
+                ? $"{targetPath}{remainingPath}{request.QueryString}"
+                : string.Empty;
+        }
+        else
+        {
+            return $"{request.Path}{request.QueryString}";
+        }
     }
 
     private static async Task ProcessResponseContent(HttpContext context, HttpResponseMessage responseMessage)
     {
+        var contentHeaders = responseMessage.Content.Headers;
+
+        // Copy the response content headers only after ensuring they are complete.
+        // We ask for Content-Length first because HttpContent lazily computes this
+        // and only afterwards writes the value into the content headers.
+        var _ = contentHeaders.ContentLength;
+
+        foreach (var header in contentHeaders.Where(x => WhiteListedHeaders.Contains(x.Key)))
+        {
+            context.Response.Headers.Append(header.Key, header.Value.ToArray());
+        }
+
         var content = await responseMessage.Content.ReadAsByteArrayAsync();
         await context.Response.Body.WriteAsync(content);
     }
+
+    private static readonly string[] WhiteListedHeaders =
+[
+            "Content-Length",
+            "Content-Type",
+            "Content-Disposition",
+            "Cache-Control",
+            "Access-Control-Expose-Headers",
+        ];
 
     private static HttpRequestMessage CreateTargetMessage(HttpContext context, string targetUri)
     {
