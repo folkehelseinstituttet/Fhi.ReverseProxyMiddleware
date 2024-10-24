@@ -1,3 +1,10 @@
+## 0.0.8
+> Oct 24, 2024
+
+* :gift: **New** Added content-headers from response
+* :bug: **Bugfix** If IncludeTargetPath is false, url will now be correct
+
+
 ## 0.0.7
 > Nov 02, 2023
 
