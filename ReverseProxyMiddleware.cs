@@ -55,7 +55,7 @@ public class ReverseProxyMiddleware(RequestDelegate nextMiddleware, IHttpClientF
         }
         else
         {
-            return $"{request.Path}{request.QueryString}";
+            return $"{request.Path.Value[1..]}{request.QueryString}";
         }
     }
 
