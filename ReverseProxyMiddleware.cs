@@ -55,7 +55,13 @@ public class ReverseProxyMiddleware(RequestDelegate nextMiddleware, IHttpClientF
         }
         else
         {
-            return $"{request.Path.Value[1..]}{request.QueryString}";
+            var targetPath = request.Path.HasValue ? request.Path.Value : string.Empty;
+
+            if (targetPath.Length > 0 && targetPath[0].Equals("/"))
+            {
+                targetPath = targetPath[1..];
+            }
+            return $"{targetPath}{request.QueryString}";
         }
     }
 
