@@ -1,3 +1,8 @@
+## 0.0.9
+> Oct 28, 2024
+
+* :bug: **Bugfix** Path wasn't correct if basepath contains a subpath (ie www.something.com/basePath/). 
+
 ## 0.0.8
 > Oct 24, 2024
 
